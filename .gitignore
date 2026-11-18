@@ -1,0 +1,37 @@
+# Recordings and datasets are never committed
+recordings/
+data/
+*.h5
+*.hdf5
+*.lance
+*.mp4
+*.mkv
+*.avi
+
+# Model checkpoints and run output
+*.ckpt
+*.pt
+*.pth
+outputs/
+wandb/
+lightning_logs/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
