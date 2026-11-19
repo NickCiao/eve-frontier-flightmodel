@@ -52,14 +52,37 @@ The published PushT checkpoint reached a **92% success rate** over 50 episodes (
 ```bash
 python train.py data=pusht data.dataset.name=pusht_expert_train.h5 \
   output_model_name=pusht_repro subdir=pusht_repro \
-  trainer.max_epochs=10 num_workers=8 loader.prefetch_factor=1
+  trainer.max_epochs=10 num_workers=6 loader.prefetch_factor=1
 ```
 
 - **The dataset name needs an override.** `config/train/data/pusht.yaml` names a `.lance` dataset. The published data is `.h5`.
-- **The default loader settings run out of memory here.** With 6 workers and a prefetch of 3, the run was killed after filling about 15 GB of shared memory. With 8 workers and a prefetch of 1, shared memory stays near 9 GB.
+- **The default loader settings run out of memory here.** With 6 workers and a prefetch of 3, the run was killed after filling about 15 GB of shared memory. A prefetch of 1 fixes it.
+- **Six workers, not eight.** Eight workers ran at 5.6 batches a second but left only about 4 GB of memory spare with swap full. Six workers run at 4.5 batches a second with about 10 GB spare.
 - **Ten epochs, not the config's 100.** The paper trains each world model for 10 epochs.
-- **Speed is limited by data loading.** About 5.6 batches a second with 8 workers, with the GPU at 50 to 75%. One epoch is 13,933 batches, about 41 minutes.
+- **Speed is limited by data loading.** The GPU sits at 50 to 75%. One epoch is 13,933 batches, about 57 minutes with six workers. Training uses about 13.7 GB of GPU memory.
 - **WandB is off by default** in the local launcher (`wandb.enabled: False`).
+
+To evaluate a trained model, put the last `weights_epoch_N.pt` and `config.json` in a folder of their own under `checkpoints/`. The loader refuses a folder with more than one `.pt` file.
+
+## Reproduction result
+
+Trained from scratch on PushT on 2026-11-18 and 2026-11-19, then evaluated with the same command and seed as the published checkpoint.
+
+| Model | PushT success over 50 episodes |
+| --- | --- |
+| Published checkpoint | 92% |
+| Trained here, 10 epochs | 92% |
+
+- **GPU time:** about 9.6 hours. One epoch at 8 workers (47 minutes), nine at 6 workers (57 minutes each), and about 13 minutes lost to the hang below.
+- **Final validation losses:** prediction 0.0034, SIGReg 1.32.
+
+## GPU driver hang
+
+The first training run stopped making progress at 17:09 on 2026-11-18, in its second epoch. Windows logged one NVIDIA driver error in the same second (`nvlddmkm` event 153, "Error occurred on GPUID: 100"). The training process did not exit. It kept one CPU thread busy with the GPU idle and wrote nothing for six hours.
+
+The cause is not known. It was the only such event in eight days of the Windows system log. WSL memory was tight at the time. The restarted run, with six workers, ran nine epochs with no further error.
+
+Long runs should be started under a supervisor that restarts them when the log stops moving. The one used here, [`model/scripts/run_repro.sh`](../model/scripts/run_repro.sh), resumes from the newest Lightning checkpoint, which the trainer writes once an epoch under `~/.cache/stable-pretraining/runs/`. To resume, copy that `last.ckpt` to `$STABLEWM_HOME/checkpoints/<subdir>/<output_model_name>_weights.ckpt` before starting `train.py`.
 
 ## Settings in the code
 
