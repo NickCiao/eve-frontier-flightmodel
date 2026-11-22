@@ -1,6 +1,6 @@
 # Flight controls and persistent settings
 
-Checked on 2026-11-22 with Nick at the Windows client, version 20.04.3712181, for NIC-127. Key bindings were read from screenshots of the client's keyboard settings. Behaviour was reported by Nick while flying inside a station. All bindings are the client's current ones; none were changed for this project.
+Checked on 2026-11-22 with Nick at the Windows client, version 20.04.3712181, for NIC-127. Key bindings were read from screenshots of the client's keyboard settings. Behaviour was reported by Nick while flying, first inside a station and later in space. All bindings are the client's current ones; none were changed for this project.
 
 Items marked **not checked** still need a test.
 
@@ -40,7 +40,7 @@ Turn, strafe, and roll keys act only while held. The ship has inertia, so a turn
 | Decelerate | Q | One tap lowers the throttle one step. Below zero is reverse |
 | Brake | Ctrl | Slows the ship to a stop while held. On release the ship speeds up again to the throttle setting |
 | Stop Ship | Ctrl-Space | Sets the throttle to zero |
-| Leap | Space | A very rapid acceleration. The ship can still be steered during it. **Not checked**: it cannot be used inside a station |
+| Leap | Hold Space | A very rapid acceleration. It cannot be used inside a station. The ship can still be steered during it, but with aimed flight on it turns toward the camera direction much more slowly than in normal flight |
 
 On the ship used for this check, the throttle has 35 steps forward and 9 steps in reverse. This may differ between ships. **Not checked**: the ship's name.
 
@@ -66,7 +66,17 @@ On the ship used for this check, the throttle has 35 steps forward and 9 steps i
 | Toggle waypoint | T |
 | Primary action (shown as "Dock" near a dock) | F |
 
-The game has its own approach command. **Not checked**: what it does, how it is cancelled, and where it stops the ship.
+Locking, checked in space on 2026-11-22:
+
+- A target can be locked only within 100 km.
+- Invulnerable targets cannot be locked.
+- A lock takes some time to acquire after X is pressed.
+- While the lock is being acquired, the screen looks the same as with no lock in the one screenshot taken. **Not checked**: whether an animation shows that a still frame missed.
+- Once locked, a panel for the target appears at the right edge of the screen, with a round icon, the target's name, and its distance (for example "23 km"). Small corner marks also appear around the target's marker.
+
+The name and distance label on a target does not need a lock. It showed on targets that were not locked. **Not checked**: what decides which object gets the label.
+
+The keyboard settings list an Approach command on Num +. Pressing it did nothing when Nick tried it. **Not checked**: whether a target was locked at the time, and whether Num Lock matters. Until it is shown to work, treat the game as having no usable approach command.
 
 ## Settings that persist after input stops
 
@@ -78,8 +88,9 @@ This list decides the action format for the world model.
 | Aimed flight | C | On or off | The hint bar, and the two circles when on |
 | Camera direction | Mouse | Continuous | With aimed flight on, the red circle's offset from the centre |
 | View | F1, F2 | CAM or TAC | The whole display changes |
-| Locked target | X | A target or none | **Not checked** |
-| Approach command | Num + | Running or not | **Not checked** |
+| Locked target | X | A target or none | A target panel at the right edge, and corner marks around the target's marker |
+| Equipped module | 1 to 8 | A module or none | The module slot is highlighted, and the hint bar changes to "Fire", "Unequip", and "Leap" |
+| Approach command | Num + | Did nothing when tried | |
 | Zoom | Right mouse button and wheel | **Not checked** whether it persists | |
 
 Inputs that do not persist: the brake, and the turn, strafe, and roll keys. All act only while held, apart from the ship's inertia.
@@ -92,7 +103,9 @@ Seen in the screenshots of the CAM view. Positions and sizes will be measured fr
 - **Speed.** A number beside the throttle gauge, in metres a second, for example "117 M/S".
 - **Target.** A name label on the target, with its distance below, for example "6 KM". A second line can appear above the name, for example "OUT OF RANGE (12.7 KM)".
 - **Heading tape.** A compass strip across the top, in degrees, with small markers on it.
-- **Hint bar.** Key hints along the bottom, which change with the steering mode.
+- **Hint bar.** Key hints along the bottom, which change with the steering mode. With a module equipped, the bar shows only "Fire", "Unequip", and "Leap", so the steering mode cannot be read from it then.
+- **Objectives panel.** At the top left when the game has given objectives. It changes size as objectives change.
+- **Small white arrows.** Several sit in a ring around the centre of the screen. **Not checked**: what they mark. They may point to objects that are off-screen.
 - **Panels.** Signature, fuel, shell, ship hit points, and capacitor at the bottom. Chat tabs at the top right. Module slots 1 to 8 at the bottom right.
 
 **Not checked**: what appears when the target is off-screen.
