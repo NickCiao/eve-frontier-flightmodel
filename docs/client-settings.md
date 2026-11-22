@@ -15,7 +15,7 @@ Read on 2026-11-22 from screenshots of the Display & Graphics and General tabs, 
 | Upscaling Setting | Not available |
 | Frame Generation | Off |
 
-The game is on one monitor of several. The Windows desktop is 6000 by 3840, and the game fills the area from x 0 to 3839 and y 768 to 2927.
+The game is on one monitor of several, and fills it. That monitor is the primary one, 3840 by 2160 with its top left at 0, 0. The recorder confirmed this in borderless mode on 2026-11-22. In a Win + PrtScn screenshot of the whole desktop, which is 6000 by 3840, the game is the area from x 0 to 3839 and y 768 to 2927.
 
 ## Graphics
 
@@ -76,5 +76,4 @@ Nick made both on 2026-11-22, before the first recording.
 
 ## Not checked
 
-- Whether the desktop area the game fills changed with the move to Fullscreen Borderless.
 - How the ship feels in flight with the three camera settings off.

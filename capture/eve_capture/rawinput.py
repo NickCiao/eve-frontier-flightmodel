@@ -311,8 +311,10 @@ class RawInputLogger:
             if flags & bit:
                 if state == "down":
                     self._buttons_down.add(name)
-                else:
+                elif name in self._buttons_down:
                     self._buttons_down.discard(name)
+                else:  # the press came before the game was in front
+                    continue
                 self._emit({"t_ns": now_ns, "kind": "button", "name": name, "state": state})
         if flags & RI_MOUSE_WHEEL:
             delta = ctypes.c_short(mouse.usButtonData).value

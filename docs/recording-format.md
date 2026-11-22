@@ -1,6 +1,6 @@
 # Recording format
 
-Format version 1, written on 2026-11-22 for NIC-116. The recorder is in [`capture/`](../capture/README.md). It was tested on 2026-11-22 on the desktop only. **Not checked**: a recording of the game itself, and whether inputs line up with frames within one frame.
+Format version 1, written on 2026-11-22 for NIC-116. The recorder is in [`capture/`](../capture/README.md). It was tested on 2026-11-22 with a one-minute recording of the game, described at the end. **Not checked**: a ten-minute session.
 
 The format may still change until that test is done. `meta.json` carries `format_version`, and any change raises it.
 
@@ -30,7 +30,7 @@ Every `t_ns` in the session is `time.perf_counter_ns()` on the recording PC, in 
 | Colour | 4:4:4, 8 bits. Colour is not halved, so small red and orange text stays sharp |
 | Frame rate | 10 frames a second, nominal |
 | Keyframes | One every 10 frames, and no B-frames, so seeking is quick |
-| Size | About 9 MB for 5 seconds of a still desktop. **Not checked**: the size for game footage |
+| Size | 650 MB for one minute of game footage, so about 6.5 GB for ten minutes |
 
 The video's own timestamps are nominal. The true time of each frame is in `frames.csv`.
 
@@ -98,3 +98,22 @@ Neither pilot reads these logs. They are kept for checking the readers.
 - Decode `video.mkv` with ffmpeg or PyAV. Any recent build reads HEVC 4:4:4.
 - Reading from `/mnt/f` is fine for a one-off conversion, at about 230 MB a second for large files. Train from a copy on WSL's own disk.
 - The persistent settings are not in `inputs.csv`. The throttle level, for example, is the running count of `e` and `q` presses since a known state. Every session starts with aimed flight on.
+
+## The one-minute test on 2026-11-22
+
+Nick flew for 60 seconds inside the station while the recorder ran.
+
+| Check | Result |
+| --- | --- |
+| Frames | 601, with none skipped and 1 repeated |
+| Gap between frames | 84 to 117 ms, 100 ms on average |
+| Latest a frame was taken after its slot | 26 ms |
+| Area recorded | The whole 3840 by 2160 monitor, which the borderless game fills |
+| Input events | 36 key, 1,830 mouse movement, 1 button, 2 focus |
+| Game log | One file copied |
+
+**Inputs against frames.** The first E press was logged at 13.153 s. The frame at 13.197 s shows no change. The frame at 13.297 s shows the throttle gauge starting to fill. So the game's response appears between 44 and 144 ms after the logged press, which is the game's own delay plus at most one frame. The input log and the frames agree to within one frame.
+
+**Fixed after the test.** A mouse button's release was logged without its press when the click was what brought the game to the front. Such a release is now dropped.
+
+**Still open.** Whether recording slowed the game for Nick, and whether a higher `qp` would cut the file size without making the display harder to read. The second waits for the readers (NIC-117).
