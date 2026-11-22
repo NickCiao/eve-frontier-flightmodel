@@ -78,9 +78,27 @@ Locking, checked in space on 2026-11-22:
 
 - Several targets can be locked at once. Each gets its own panel, in a row at the right edge. Three were locked in the screenshot.
 - The panel gives the distance in metres when the target is under 10 km (for example "7,291 m"). The label on the target itself rounds to whole kilometres ("7 KM"), so the panel is the finer reading.
-- Other pilots' ships can be locked. Their names then show on screen, so recordings should avoid locking them.
+- Other pilots' ships can be locked. Their names then show on screen. Nick's decision on 2026-11-22: this is not a concern.
+- One locked target is the selected one. Its panel has orange arrows around it.
 
-The name and distance label on a target does not need a lock. It showed on targets that were not locked. **Not checked**: what decides which object gets the label.
+The name and distance label on a target does not need a lock. It appears on whatever is nearest the centre circle, and it stays on anything Nick has clicked.
+
+### The Supply Dock as a distance source
+
+The Supply Dock is invulnerable, so it cannot be locked. Its label still gives a fine distance. Above the name, a line reads "OUT OF RANGE" with a distance in brackets:
+
+| Distance | Line above the name | Label below the name |
+| --- | --- | --- |
+| Over 1 km | One decimal place of a kilometre, for example "(12.7 KM)", "(7.4 KM)", "(2.4 KM)" | Whole kilometres, for example "2 KM" |
+| Under 1 km | Whole metres, for example "(181 M)", "(64 M)" | "0 KM" |
+
+So the reading is good to 100 m beyond 1 km, and to 1 m inside it. **Not checked**: what the line shows once the ship is in docking range, and at what distance that happens.
+
+### When a target is off-screen
+
+Seen with a locked ship behind the camera. Its marker and label stay on screen, held near the edge on the side the target lies, and a small arrow appears beside the marker pointing outward. The label still shows the name and the distance. The lock panel is not affected.
+
+**Not checked**: what an orange chevron on or just under the heading tape marks. It may be the bearing of the selected target.
 
 The keyboard settings list an Approach command on Num +. It did nothing in three tries: with a target locked and Num Lock on, with Num Lock off, and with Num Lock on and no target locked. The game has no usable approach command on this client version.
 
@@ -111,10 +129,8 @@ Seen in the screenshots of the CAM view. Positions and sizes will be measured fr
 - **Heading tape.** A compass strip across the top, in degrees, with small markers on it.
 - **Hint bar.** Key hints along the bottom, which change with the steering mode. With a module equipped, the bar shows only "Fire", "Unequip", and "Leap", so the steering mode cannot be read from it then.
 - **Objectives panel.** At the top left when the game has given objectives. It changes size as objectives change.
-- **Small white arrows.** Several sit in a ring around the centre of the screen. **Not checked**: what they mark. They may point to objects that are off-screen.
+- **Small white arrows.** Several sit in a ring around the centre of the screen. They mark objects that are off-screen, as described above.
 - **Panels.** Signature, fuel, shell, ship hit points, and capacitor at the bottom. Chat tabs at the top right. Module slots 1 to 8 at the bottom right.
-
-**Not checked**: what appears when the target is off-screen.
 
 ## Full key list for flight
 
