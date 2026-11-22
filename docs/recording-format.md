@@ -116,4 +116,6 @@ Nick flew for 60 seconds inside the station while the recorder ran.
 
 **Fixed after the test.** A mouse button's release was logged without its press when the click was what brought the game to the front. Such a release is now dropped.
 
-**Still open.** Whether recording slowed the game for Nick, and whether a higher `qp` would cut the file size without making the display harder to read. The second waits for the readers (NIC-117).
+**Game speed.** Nick reported that the game felt normal while the recorder ran.
+
+**Still open.** Whether a higher `qp` would cut the file size without making the display harder to read. This waits for the readers (NIC-117).
