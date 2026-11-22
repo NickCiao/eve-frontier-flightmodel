@@ -92,7 +92,11 @@ The Supply Dock is invulnerable, so it cannot be locked. Its label still gives a
 | Over 1 km | One decimal place of a kilometre, for example "(12.7 KM)", "(7.4 KM)", "(2.4 KM)" | Whole kilometres, for example "2 KM" |
 | Under 1 km | Whole metres, for example "(181 M)", "(64 M)" | "0 KM" |
 
-So the reading is good to 100 m beyond 1 km, and to 1 m inside it. **Not checked**: what the line shows once the ship is in docking range, and at what distance that happens.
+| In docking range | "IN RANGE" in orange, with no number | "0 KM" |
+
+So the reading is good to 100 m beyond 1 km, and to 1 m inside it. Once the ship is in docking range the number is gone, and the "F Dock" hint under the label turns bright.
+
+The lowest number seen before "IN RANGE" was 64 m. The bracketed number is probably the distance left to the edge of docking range, and not the distance to the dock itself. **Not checked**: this, and how large the docking range is.
 
 ### When a target is off-screen
 
