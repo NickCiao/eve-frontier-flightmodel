@@ -2,7 +2,7 @@
 
 Checked on 2026-11-22 with Nick at the Windows client, version 20.04.3712181, for NIC-127. Key bindings were read from screenshots of the client's keyboard settings. Behaviour was reported by Nick while flying, first inside a station and later in space. All bindings are the client's current ones; none were changed for this project.
 
-Items marked **not checked** still need a test.
+Items marked **not checked** still need a test. The screenshots are in [`screenshots/`](screenshots/README.md).
 
 ## How steering works
 
