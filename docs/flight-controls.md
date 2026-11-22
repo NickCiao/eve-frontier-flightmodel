@@ -96,7 +96,7 @@ The Supply Dock is invulnerable, so it cannot be locked. Its label still gives a
 
 So the reading is good to 100 m beyond 1 km, and to 1 m inside it. Once the ship is in docking range the number is gone, and the "F Dock" hint under the label turns bright.
 
-The lowest number seen before "IN RANGE" was 64 m. The bracketed number is probably the distance left to the edge of docking range, and not the distance to the dock itself. **Not checked**: this, and how large the docking range is.
+The bracketed number is the distance left to the edge of docking range, and not the distance to the dock itself. Nick confirmed this on 2026-11-22. **Not checked**: how large the docking range is.
 
 ### When a target is off-screen
 

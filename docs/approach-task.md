@@ -30,7 +30,13 @@ Its drawbacks:
 
 ## Other targets
 
-Nick suggested varying the target, using objects outside the starting area. Not decided. What a target needs:
+Nick's decision on 2026-11-22: start with the Supply Dock alone, and build the tools so that other targets can be added later. In practice:
+
+- Each recording's metadata names its target and says how its distance and arrival are read.
+- The readers and the controller take the target as a setting. Nothing about the dock is fixed in the code.
+- The arrival rule is stated per target. For the dock it is "IN RANGE". For a locked target it would be a distance from the lock panel.
+
+What a target needs:
 
 - It stays in one place.
 - The screen shows its distance finely enough to judge arrival. A locked target's panel gives metres under 10 km. A target that cannot be locked gives only whole kilometres, unless it has a range line like the dock's.
@@ -39,6 +45,6 @@ Nick suggested varying the target, using objects outside the starting area. Not 
 
 ## Still open
 
-- How large docking range is, and whether the bracketed distance counts down to its edge or to the dock.
+- How large docking range is. The bracketed distance counts down to its edge.
 - The time limit.
 - Whether the start distance and arrival speed above are right once Nick has flown the task by hand.
