@@ -42,7 +42,9 @@ Turn, strafe, and roll keys act only while held. The ship has inertia, so a turn
 | Stop Ship | Ctrl-Space | Sets the throttle to zero |
 | Leap | Hold Space | A very rapid acceleration. It cannot be used inside a station. The ship can still be steered during it, but with aimed flight on it turns toward the camera direction much more slowly than in normal flight |
 
-On the ship used for this check, the throttle has 35 steps forward and 9 steps in reverse. This may differ between ships. **Not checked**: the ship's name.
+On the ship used for this check, the throttle has 35 steps forward and 9 steps in reverse. This may differ between ships. The ship's inventory is labelled "Creation", followed by an ID, and other pilots' ships of the same look carry a "[Creation]" tag, so the ship type appears to be Creation.
+
+The character screen lists four piloting effects: thrust multiplier, warp speed multiplier, inertia modifier, and angular agility. All four were 0% on 2026-11-22, with the piloting skill at 0.03. If these rise, the ship will accelerate and turn differently, so each recording's metadata should note them.
 
 ## Camera and views
 
@@ -74,9 +76,13 @@ Locking, checked in space on 2026-11-22:
 - While the lock is being acquired, the screen looks the same as with no lock in the one screenshot taken. **Not checked**: whether an animation shows that a still frame missed.
 - Once locked, a panel for the target appears at the right edge of the screen, with a round icon, the target's name, and its distance (for example "23 km"). Small corner marks also appear around the target's marker.
 
+- Several targets can be locked at once. Each gets its own panel, in a row at the right edge. Three were locked in the screenshot.
+- The panel gives the distance in metres when the target is under 10 km (for example "7,291 m"). The label on the target itself rounds to whole kilometres ("7 KM"), so the panel is the finer reading.
+- Other pilots' ships can be locked. Their names then show on screen, so recordings should avoid locking them.
+
 The name and distance label on a target does not need a lock. It showed on targets that were not locked. **Not checked**: what decides which object gets the label.
 
-The keyboard settings list an Approach command on Num +. Pressing it did nothing when Nick tried it. **Not checked**: whether a target was locked at the time, and whether Num Lock matters. Until it is shown to work, treat the game as having no usable approach command.
+The keyboard settings list an Approach command on Num +. It did nothing in three tries: with a target locked and Num Lock on, with Num Lock off, and with Num Lock on and no target locked. The game has no usable approach command on this client version.
 
 ## Settings that persist after input stops
 
@@ -88,9 +94,9 @@ This list decides the action format for the world model.
 | Aimed flight | C | On or off | The hint bar, and the two circles when on |
 | Camera direction | Mouse | Continuous | With aimed flight on, the red circle's offset from the centre |
 | View | F1, F2 | CAM or TAC | The whole display changes |
-| Locked target | X | A target or none | A target panel at the right edge, and corner marks around the target's marker |
+| Locked targets | X | None, one, or several | A panel for each at the right edge, and corner marks around each target's marker |
 | Equipped module | 1 to 8 | A module or none | The module slot is highlighted, and the hint bar changes to "Fire", "Unequip", and "Leap" |
-| Approach command | Num + | Did nothing when tried | |
+| Approach command | Num + | Does nothing | |
 | Zoom | Right mouse button and wheel | **Not checked** whether it persists | |
 
 Inputs that do not persist: the brake, and the turn, strafe, and roll keys. All act only while held, apart from the ship's inertia.
