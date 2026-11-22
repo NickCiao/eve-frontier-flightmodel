@@ -1,0 +1,53 @@
+{
+  "_comment": "The fixed client settings from docs/client-settings.md. Copied into every recording's meta.json. Update both together.",
+  "checked": "2026-11-22",
+  "client_version": "20.04.3712181",
+  "display": {
+    "display_mode": "Fullscreen Borderless",
+    "resolution": "3840x2160",
+    "ui_scaling": "200%",
+    "v_sync": "Off",
+    "upscaling": "Off",
+    "frame_generation": "Off"
+  },
+  "graphics": {
+    "all_quality_settings": "High",
+    "experimental_lighting": true,
+    "brightness": "centre"
+  },
+  "camera": {
+    "camera_center_h": "centre",
+    "camera_center_v": "about three quarters toward Down",
+    "camera_shake": "Off",
+    "camera_bobbing": false,
+    "invert_zoom_direction": false,
+    "offset_interface_with_camera": false,
+    "dynamic_camera_movement": false,
+    "scroll_between_view_modes": false
+  },
+  "general": {
+    "mouse_sensitivity": "centre",
+    "ads_sensitivity": "centre",
+    "mouse_smoothing": "centre",
+    "invert_y_axis": false,
+    "show_hud_shortcut_hints": true,
+    "auto_target_back": "0 targets"
+  },
+  "flight": {
+    "view": "CAM (F1)",
+    "aimed_flight_at_start": true,
+    "module_equipped": false,
+    "panels_open": false
+  },
+  "ship": {
+    "type": "Creation",
+    "throttle_steps_forward": 35,
+    "throttle_steps_reverse": 9,
+    "piloting_effects": {
+      "thrust_multiplier": "0%",
+      "warp_speed_multiplier": "0%",
+      "inertia_modifier": "0%",
+      "angular_agility": "0%"
+    }
+  }
+}

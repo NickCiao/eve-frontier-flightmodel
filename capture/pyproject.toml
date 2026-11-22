@@ -1,0 +1,21 @@
+[project]
+name = "eve-capture"
+version = "0.1.0"
+description = "Records the EVE Frontier client window with key and mouse input, and replays it."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "dxcam>=0.0.5",
+    "numpy>=1.26",
+    "opencv-python>=4.9",
+]
+
+[project.scripts]
+eve-record = "eve_capture.record:main"
+eve-replay = "eve_capture.replay:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["eve_capture"]
