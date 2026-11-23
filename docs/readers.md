@@ -65,9 +65,28 @@ A controller should ignore readings under 0.5 confidence and carry the last good
 
 **Not checked by hand:** the throttle and the nose circle on these 200 frames. The nose circle was checked separately on about 130 detections across the session: every score of 0.86 or more was a real circle, and every score of 0.66 or less was not. The cut is at 0.75.
 
+## The full run on 2026-11-22
+
+The readers were then run over all 6,001 frames of the session.
+
+| Reading | Frames with a value | Of those, confidence 0.5 or more |
+| --- | --- | --- |
+| Speed | 5,840 | 5,741 |
+| Throttle | 5,851 | 5,851 |
+| Target label | 4,236 | 4,236 |
+| Range | 3,432 | 3,327 |
+| Nose circle | 894 | 894 |
+| Closing speed | 3,191 | 3,191 |
+
+Speeds ran from -137 to 2,410 m/s. The fastest were during Leap.
+
+**A fault the hand check missed.** Range fell to 0 for a frame or two in three places while the dock was kilometres away. In each, the range text was dim and the centre circle's orange arc crossed the line, and the reader took the arc for "IN RANGE". Two changes fixed it: "IN RANGE" must be in orange, and it is only looked for where the game draws it, centred over the name. All three places now give no value, and eight true "IN RANGE" frames still read correctly. The session's `readings.csv` was written before this fix.
+
+**Not looked into**: three single-frame steps of 400 m in the range at long distance. They may be real, since the ship covers 240 m a frame at 2,400 m/s.
+
 ## Speed of the readers
 
-About 74 ms a frame for all readings together, on one CPU core, measured on recorded frames. That is inside the 100 ms a frame allows at 10 frames a second, with little to spare.
+About 76 ms a frame for all readings together, on one CPU core, measured on recorded frames. That is inside the 100 ms a frame allows at 10 frames a second, with little to spare.
 
 **Not checked**: the readers running live beside the recorder and the game. This is the second half of NIC-117's finish line.
 

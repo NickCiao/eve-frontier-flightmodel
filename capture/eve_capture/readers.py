@@ -248,17 +248,23 @@ class Readers:
         strip_bgr = im[max(0, y - 38):max(0, y - 10), x0:cx + 260]
         if strip_bgr.shape[0] < GLYPH_H + 2 or strip_bgr.shape[1] < 120:
             return out
-        out["range_m"], out["in_range"] = self._range_line(strip_bgr[..., 1])
+        out["range_m"], out["in_range"] = self._range_line(strip_bgr[..., 1], strip_bgr, cx - x0)
         return out
 
-    def _range_line(self, strip: np.ndarray) -> tuple[Reading, Reading]:
+    def _range_line(self, strip: np.ndarray, strip_bgr: np.ndarray, centre: int) -> tuple[Reading, Reading]:
         m, _ = self.text.best(strip, "M")
         xs = np.where(m > 0.72)[0]
         if len(xs) == 0:
             if strip.shape[1] >= self.in_range_tmpl.shape[1]:
                 s = cv2.matchTemplate(strip.astype(np.float32), self.in_range_tmpl, cv2.TM_CCOEFF_NORMED)
-                s = float(np.nan_to_num(s).max())
-                if s > 0.7:
+                # The words are centred over the name, so only look there.
+                s = np.nan_to_num(s).max(axis=0)
+                want = centre - self.in_range_tmpl.shape[1] // 2
+                s = float(s[max(0, want - 10):want + 11].max()) if 0 <= want < len(s) else 0.0
+                # IN RANGE is drawn in orange. White or grey text of a similar shape is something else.
+                blue, green, red = (strip_bgr[..., i].astype(np.int16) for i in range(3))
+                orange = int(((red > 190) & (green > 60) & (green < 175) & (blue < 90)).sum())
+                if s > 0.7 and orange > 300:  # the words alone are about 550 orange pixels
                     return Reading(0.0, s), Reading(True, s)
             return NOTHING, NOTHING
         # the unit's M is the right-most strong one
