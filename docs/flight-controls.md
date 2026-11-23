@@ -42,6 +42,8 @@ Turn, strafe, and roll keys act only while held. The ship has inertia, so a turn
 | Stop Ship | Ctrl-Space | Sets the throttle to zero |
 | Leap | Hold Space | A very rapid acceleration. It cannot be used inside a station. The ship can still be steered during it, but with aimed flight on it turns toward the camera direction much more slowly than in normal flight |
 
+Holding E or Q appears to keep changing the throttle. In the ten-minute recording on 2026-11-22, the gauge kept falling over several frames while Q was held for 0.7 seconds. **Not checked** with Nick. If so, the throttle level cannot be worked out by counting key presses, and has to be read from the gauge.
+
 On the ship used for this check, the throttle has 35 steps forward and 9 steps in reverse. This may differ between ships. The ship's inventory is labelled "Creation", followed by an ID, and other pilots' ships of the same look carry a "[Creation]" tag, so the ship type appears to be Creation.
 
 The character screen lists four piloting effects: thrust multiplier, warp speed multiplier, inertia modifier, and angular agility. All four were 0% on 2026-11-22, with the piloting skill at 0.03. If these rise, the ship will accelerate and turn differently, so each recording's metadata should note them.

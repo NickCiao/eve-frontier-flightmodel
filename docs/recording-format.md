@@ -1,6 +1,6 @@
 # Recording format
 
-Format version 1, written on 2026-11-22 for NIC-116. The recorder is in [`capture/`](../capture/README.md). It was tested on 2026-11-22 with a one-minute recording of the game, described at the end. **Not checked**: a ten-minute session.
+Format version 1, written on 2026-11-22 for NIC-116. The recorder is in [`capture/`](../capture/README.md). It was tested on 2026-11-22 with a one-minute recording of the game, and a ten-minute one, both described at the end.
 
 The format may still change until that test is done. `meta.json` carries `format_version`, and any change raises it.
 
@@ -119,3 +119,29 @@ Nick flew for 60 seconds inside the station while the recorder ran.
 **Game speed.** Nick reported that the game felt normal while the recorder ran.
 
 **Still open.** Whether a higher `qp` would cut the file size without making the display harder to read. This waits for the readers (NIC-117).
+## The ten-minute test on 2026-11-22
+
+Nick flew approaches to the Supply Dock for 600 seconds. This is the finish line set in NIC-116.
+
+| Check | Result |
+| --- | --- |
+| Frames | 6,001, with none skipped and 18 repeated |
+| Gap between frames | 84 to 120 ms, 100.0 ms on average |
+| Latest a frame was taken after its slot | 26 ms |
+| Input events | 320 key, 29,994 mouse movement, 4 button, 2 focus |
+| Size | 6.04 GB |
+| Game log | One file copied, with 11 lines |
+
+**Inputs against frames.** Three inputs were checked by eye against the frames around them.
+
+| Input | Logged at | First frame that shows the response | Delay |
+| --- | --- | --- | --- |
+| Q pressed, early | 22.551 s | Frame 228, throttle gauge | 144 to 244 ms |
+| Mouse moved after 1.5 s of stillness | 269.519 s | Frame 2697, heading tape | 79 to 179 ms |
+| Q pressed, late | 595.901 s | Frame 5960, throttle gauge | 0 to 96 ms |
+
+Each range runs from the last frame without the response to the first frame with it. The response never showed before the logged input, and in the late case it showed in the very next frame. So the log and the frames agree to within one frame, and there is no drift over ten minutes. The rest of the delay, up to about two frames, is the game's own, and it varies. Mouse Smoothing is at its centre setting and adds to the delay for mouse movement.
+
+The world model should expect an input to show on screen one to three frames after its row in `inputs.csv`.
+
+**Replay.** The viewer opens the session and draws the inputs on its frames. Checked by saving frames with the overlay. **Not checked**: Nick playing it through in the viewer's window.
