@@ -12,6 +12,7 @@ dependencies = [
 [project.scripts]
 eve-record = "eve_capture.record:main"
 eve-replay = "eve_capture.replay:main"
+eve-read = "eve_capture.read_session:main"
 
 [build-system]
 requires = ["hatchling"]
