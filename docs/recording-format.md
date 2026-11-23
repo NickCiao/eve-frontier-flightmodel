@@ -97,7 +97,7 @@ Neither pilot reads these logs. They are kept for checking the readers.
 
 - Decode `video.mkv` with ffmpeg or PyAV. Any recent build reads HEVC 4:4:4.
 - Reading from `/mnt/f` is fine for a one-off conversion, at about 230 MB a second for large files. Train from a copy on WSL's own disk.
-- The persistent settings are not in `inputs.csv`. The throttle level, for example, is the running count of `e` and `q` presses since a known state. Every session starts with aimed flight on.
+- The persistent settings are not in `inputs.csv`. The throttle level cannot be counted from `e` and `q` presses, because holding either key keeps changing it. It has to be read from the gauge in the frame. Every session starts with aimed flight on.
 
 ## The one-minute test on 2026-11-22
 

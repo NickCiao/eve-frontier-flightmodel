@@ -36,13 +36,13 @@ Turn, strafe, and roll keys act only while held. The ship has inertia, so a turn
 
 | Action | Key | Behaviour |
 | --- | --- | --- |
-| Accelerate | E | One tap raises the throttle one step, and it stays there |
-| Decelerate | Q | One tap lowers the throttle one step. Below zero is reverse |
+| Accelerate | E | One tap raises the throttle one step, and it stays there. Holding keeps raising it |
+| Decelerate | Q | One tap lowers the throttle one step. Holding keeps lowering it. Below zero is reverse |
 | Brake | Ctrl | Slows the ship to a stop while held. On release the ship speeds up again to the throttle setting |
 | Stop Ship | Ctrl-Space | Sets the throttle to zero |
 | Leap | Hold Space | A very rapid acceleration. It cannot be used inside a station. The ship can still be steered during it, but with aimed flight on it turns toward the camera direction much more slowly than in normal flight |
 
-Holding E or Q appears to keep changing the throttle. In the ten-minute recording on 2026-11-22, the gauge kept falling over several frames while Q was held for 0.7 seconds. **Not checked** with Nick. If so, the throttle level cannot be worked out by counting key presses, and has to be read from the gauge.
+Holding E or Q keeps raising or lowering the throttle for as long as the key is held. Nick confirmed this on 2026-11-22, and the ten-minute recording shows the gauge falling over several frames during a 0.7 second hold of Q. So the throttle level cannot be worked out by counting key presses. It has to be read from the gauge.
 
 On the ship used for this check, the throttle has 35 steps forward and 9 steps in reverse. This may differ between ships. The ship's inventory is labelled "Creation", followed by an ID, and other pilots' ships of the same look carry a "[Creation]" tag, so the ship type appears to be Creation.
 
